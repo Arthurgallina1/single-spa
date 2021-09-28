@@ -43,3 +43,16 @@ Run-Time Integration using Webpack Module Federation -> Hardest to setup but mos
 # **Webpack**
 
 ![Webpack](/docs/assets/webpack.png)
+<br>
+
+![Webpack](/docs/assets/WebPackJS.png)
+
+- With HTML webpack it makes automatic to get the output js files and call them into the HTML]
+- With this all outputs will be loaded correctly and automaticly into the index.html
+
+```plugins: [
+new HtmlWebpackPlugin({
+            template: './public/index.html'
+        })
+    ]
+```
