@@ -84,3 +84,9 @@ new HtmlWebpackPlugin({
         }),
   ```
 - In host refactor to use a boostrap file and import the products/ProductIndex
+
+**Development Process**
+
+![Webpack](/docs/assets/DevelopmentProcess.png)
+
+- Index.html are only used during their own development. While index.html for **container** is use during development+production.
