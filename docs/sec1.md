@@ -56,3 +56,31 @@ new HtmlWebpackPlugin({
         })
     ]
 ```
+
+## **Module Federation**
+
+![Webpack](/docs/assets/IntegrationModuleFed.png)
+
+- Host is the **container** and remote is **products**;
+- Products will make _index.js_ available to other projects;
+- ```
+    // In the webpack for products
+    new ModuleFederationPlugin({
+    name: 'products',
+    filename: 'remoteEntry.js',
+    exposes: {
+                './ProductsIndex' : './src/index.js'
+            }
+    })
+  ```
+- The container will get access to products index.js;
+- ```
+    // Inside host container
+    new ModuleFederationPlugin({
+            name: 'container',
+            remotes: {
+                products: 'products@http://localhost:8081/remoteEntry.js'
+            }
+        }),
+  ```
+- In host refactor to use a boostrap file and import the products/ProductIndex

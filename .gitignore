@@ -1,2 +1,4 @@
 products/node_modules
 products/dist
+container/dist
+container/node_modules
