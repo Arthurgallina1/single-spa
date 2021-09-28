@@ -37,3 +37,9 @@ Deploy to a static file .js that is fetched after the container has been loaded 
 
 <br>
 Run-Time Integration using Webpack Module Federation -> Hardest to setup but most flexible and perfomant solution.
+<br>
+<br>
+
+# **Webpack**
+
+![Webpack](/docs/assets/webpack.png)
