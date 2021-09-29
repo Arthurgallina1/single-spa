@@ -90,3 +90,56 @@ new HtmlWebpackPlugin({
 ![Webpack](/docs/assets/DevelopmentProcess.png)
 
 - Index.html are only used during their own development. While index.html for **container** is use during development+production.
+
+<br>
+
+## Using Shared Modules
+
+Currently Cart and Products make use of Faker =>
+
+With **Module Federation Plugin** we can make it fetch only once.
+Container will notices that both require Faker and choose to load only copy from either Cart or Products and then share the single copy.
+
+```
+// Adding shared in both webpack config
+ new ModuleFederationPlugin({
+            name: 'cart',
+            filename: 'remoteEntry.js',
+            exposes: {
+                './CartShow': './src/index.js'
+            },
+            shared: ['faker']
+        }),
+```
+
+But when trying to use the Product project standalone it shows:
+
+`Uncaught Error: Shared module is not available for eager consumption: webpack/sharing/consume/default/faker/faker`
+
+That happens because when it marked as shared **it loaded async** so it's not avaiable before the remoteEntry.js (unlike when running the container).
+
+**Async Loading Script**
+
+Adding a bootstrap.js file and then calling it on the index.js so the project knows it has to be loaded async and is able to fetch what it needs before it runs.
+
+<br>
+
+**This way the project share the very SAME copy of the Faker, but what if one of them change the version?**
+
+The Module Federation Plugin takes care of it. It looks inside the package.json versions for each dependency and only and check if it matches are able to be shared. _E.g: ^4.1.0 and 4.6 MATCH but 4.1 and 5.1 no._
+
+<br>
+
+**Singleton Loading**
+
+With singleton it only load one single copy of it no matter what. It's important for dependencies like **React**.
+
+If versions aren't loaded as expected (Different version + Singleton) it throws a warning in the console.
+
+```
+ shared: {
+            faker: {
+                singleton: true
+            }
+        }
+```
