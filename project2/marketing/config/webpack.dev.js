@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const commomConfig = require('./webpack.commom')
+const packageJson = require('../package.json')
 
 const devConfig = {
     mode: 'development',
@@ -21,6 +22,8 @@ const devConfig = {
             exposes: {
                 './MarketingApp': './src/bootstrap.js'
             },
+            shared: ['react', 'react-dom']
+            // shared: packageJson.dependencies
         })
     ]
 }

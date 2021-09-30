@@ -278,3 +278,12 @@ export default function MarketingApp() {
 }
 // This will render the MarketingApp and export as component to be used normally.
 ```
+
+Instead of going on each webpack config file to add the shared libraries and make changes every time we can make use of **Delegatin Shared Module Selection** and then webpack will take care of doing this. (Sometimes you want be very specific of versions so do not use this every time).
+
+- Require package.json dependecies and pass it to webpack.
+
+```
+const packageJson = require('../package.json')
+shared: packageJson.dependencies
+```
