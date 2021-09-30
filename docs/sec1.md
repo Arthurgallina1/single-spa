@@ -256,3 +256,25 @@ const mount = (el) => {
   ReactDOM.render(<App />), el)
 }
 ```
+
+Integration Container with Marketing using Module Federation Plugin. (Dev and Prod use diferent configs for MFP)
+
+**Why using mount instead of justing export Marketing as a react component?**
+This is doable but would be framework specific making a bigger coupling. With mount it's 100% generic.
+
+```
+import React, { useRef, useEffect } from 'react'
+import { mount } from 'marketing/MarketingApp'
+
+import React from 'react'
+
+export default function MarketingApp() {
+  const ref = useRef(null)
+  useEffect(() => {
+    mount(ref.current)
+  }, [])
+
+  return <div ref={ref} />
+}
+// This will render the MarketingApp and export as component to be used normally.
+```
