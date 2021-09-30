@@ -16,7 +16,7 @@ project2/auth/node_modules
 project2/auth/dist
 project2/container/dist
 project2/container/node_modules
-project2/auth/dist
-project2/auth/node_modules
+project2/dashboard/dist
+project2/dashboard/node_modules
 project2/marketing/dist
 project2/marketing/node_modules

@@ -236,3 +236,13 @@ Dashboard -> Dashboard | vanilla js
 
 - (1) Container will always use latest version of child app (no redeploy of container)
 - (2) Container can specify exaclty what version of a child it wants to use (requires redeploy to change)
+
+<br>
+<br>
+<br>
+
+### Currently CRA uses webpack 4.x.x and is finishing it migration to WP5, currenlty its possible to use CRARO to make use of MFE. But in this project will set up projects from scratch and set webpack.
+
+<br>
+3 webpack configs -> 1 Common, 1 for dev and for production.
+Commom is merged using merge from webpack-merge
