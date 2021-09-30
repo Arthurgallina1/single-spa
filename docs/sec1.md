@@ -196,3 +196,43 @@ if (process.env.NODE_ENV === 'development') {
 // Situation #2
 export { mount } //Container can import the mount and decides when/where to use it.
 ```
+
+<br>
+
+# Project 2
+
+Container | react
+
+Marketing -> Home + Pricing Page | react
+
+Auth -> Sign In + sign Up | react
+
+Dashboard -> Dashboard | vanilla js
+
+**It's possible to shared states with redux or entire react components, but for this project we will not.**
+
+## Requirements that drive architecture choices
+
+<br>
+
+### Zero coupling between child projects
+
+- No import of functions/objects
+- No shared state
+- Shared libraries through Module Fedaration is ok.
+
+### Near-zero coupling between container and child projects
+
+- Container shouldn't assume that child is using a particular framework
+- Any communications done via callback or simple events (No redux or similar).
+
+### CSS from one project shouldn't affect the another
+
+### Version control (monorepo vs separate) shouldn't have any impact on overall project
+
+- Using monorepo or separate repo it should work the same.
+
+### For production deployment -> Container should be able to decide to always use latest version of project or a specific version.
+
+- (1) Container will always use latest version of child app (no redeploy of container)
+- (2) Container can specify exaclty what version of a child it wants to use (requires redeploy to change)
