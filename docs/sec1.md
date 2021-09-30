@@ -246,3 +246,13 @@ Dashboard -> Dashboard | vanilla js
 <br>
 3 webpack configs -> 1 Common, 1 for dev and for production.
 Commom is merged using merge from webpack-merge
+
+**Wiring up React**
+
+On boostrap js
+
+```
+const mount = (el) => {
+  ReactDOM.render(<App />), el)
+}
+```
