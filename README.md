@@ -299,3 +299,5 @@ When webpack is building the app we need to know the file name it will spit (rem
 Here we will have a Git **Monorepo** with action that watch the each project and build production version with webpack and uploads to S3.
 
 **WebApp -> Amazon Cloud Front -> S3**
+
+**Production Webpack**
