@@ -19,7 +19,7 @@ There is **3** types of integration (how MFE get assembled together):
 
 <br>
 
-![Build, Time](/docs/assets/buildTimeInt.png)
+![Build, Time](./assets/buildTimeInt.png)
 
 - This looks like using a normal 3rd api library.
 - Easy to setup and understand.
@@ -28,7 +28,7 @@ There is **3** types of integration (how MFE get assembled together):
 
 <br>
 
-![Run, Time](/docs/assets/RunTimeInt.png)
+![Run, Time](./assets/RunTimeInt.png)
 Deploy to a static file .js that is fetched after the container has been loaded in the browser.
 
 - Can be deployed independetly at any time.
@@ -42,10 +42,10 @@ Run-Time Integration using Webpack Module Federation -> Hardest to setup but mos
 
 # **Webpack**
 
-![Webpack](/docs/assets/webpack.png)
+![Webpack](./assets/webpack.png)
 <br>
 
-![Webpack](/docs/assets/WebPackJS.png)
+![Webpack](./assets/WebPackJS.png)
 
 - With HTML webpack it makes automatic to get the output js files and call them into the HTML]
 - With this all outputs will be loaded correctly and automaticly into the index.html
@@ -59,7 +59,7 @@ new HtmlWebpackPlugin({
 
 ## **Module Federation**
 
-![Webpack](/docs/assets/IntegrationModuleFed.png)
+![Webpack](./assets/IntegrationModuleFed.png)
 
 - Host is the **container** and remote is **products**;
 - Products will make _index.js_ available to other projects;
@@ -87,7 +87,7 @@ new HtmlWebpackPlugin({
 
 **Development Process**
 
-![Webpack](/docs/assets/DevelopmentProcess.png)
+![DevProcess](./assets/DevelopmentProcess.png)
 
 - Index.html are only used during their own development. While index.html for **container** is use during development+production.
 
@@ -287,3 +287,15 @@ Instead of going on each webpack config file to add the shared libraries and mak
 const packageJson = require('../package.json')
 shared: packageJson.dependencies
 ```
+
+# Deployment and CI/CD
+
+![Deployment](./assets/Deployment.png)
+
+When webpack is building the app we need to know the file name it will spit (remoteEntry).
+
+**It's really important to know the local of child app remoteEntry at buildtime because that's when the container maps it as ModuleFederation.**
+
+Here we will have a Git **Monorepo** with action that watch the each project and build production version with webpack and uploads to S3.
+
+**WebApp -> Amazon Cloud Front -> S3**
